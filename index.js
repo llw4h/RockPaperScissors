@@ -9,7 +9,6 @@ function playRound(playerSelection, computerSelection){
     (playerSelection === 'rock' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'scissors')){
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-        // return `You Lose! ${computerSelection} beats ${playerSelection}`;
         return false;
     } 
 
@@ -19,7 +18,6 @@ function playRound(playerSelection, computerSelection){
     }
     console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
     return true;
-    // return `You Win! ${playerSelection} beats ${computerSelection}`;
 }
 
 function game(){
