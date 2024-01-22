@@ -5,13 +5,22 @@ let resultBoard = document.querySelector('.resultBoard');
 
 let resultRoundDiv = document.createElement('div');
 let scoreDiv = document.createElement('div');
+let resultRound = document.createElement('p');
+
+let playerScore = document.createElement('p');
+let computerScore = document.createElement('p');
+
+const resetBtn = document.createElement('button');
+resetBtn.textContent = 'Try Again';
+
+let result = null;
+let player = 0;
+let computer = 0;
 
 function getComputerChoice(){
     let choice = ["rock", "paper", "scissors"];
     return choice[Math.floor(Math.random() * choice.length)] ;
 }
-
-let resultRound = document.createElement('p');
 
 function playRound(playerSelection, computerSelection){
 
@@ -35,10 +44,6 @@ function playRound(playerSelection, computerSelection){
     return true;
 }
 
-let result = null;
-let player = 0;
-let computer = 0;
-
 rockBtn.addEventListener('click', () => {
     result = playRound('rock', getComputerChoice());
     tallyPoints();
@@ -54,10 +59,22 @@ scissorsBtn.addEventListener('click', () => {
     tallyPoints();
 });
 
-function tallyPoints(){
-    let playerScore = document.createElement('p');
-    let computerScore = document.createElement('p');
+resetBtn.addEventListener('click', () => {
+    result = null;
+    player = 0;
+    computer = 0;
+    resultRoundDiv.innerHTML = '';
+    scoreDiv.innerHTML = '';
+    
+    rockBtn.style.display = 'inline'; 
+    paperBtn.style.display = 'inline';
+    scissorsBtn.style.display = 'inline';
 
+    game();
+
+});
+
+function tallyPoints(){
     if (result === true) {
         player++;
     } else {
@@ -67,20 +84,21 @@ function tallyPoints(){
     playerScore.textContent = `Player: ${player}`;
     computerScore.textContent = `Computer: ${computer}`;
 
+    scoreDiv.innerHTML = '';
+    scoreDiv.appendChild(playerScore);
+    scoreDiv.appendChild(computerScore);
+
     if (player === 5 || computer === 5){
         let winner = (player === 5) ? 'Player' : 'Computer';
         resultRound.textContent = `${winner} Wins The Match!`;
         resultRoundDiv.innerHTML = '';
         resultRoundDiv.appendChild(resultRound);
+        resultBoard.appendChild(resetBtn);
 
         rockBtn.style.display = 'none'; 
         paperBtn.style.display = 'none';
         scissorsBtn.style.display = 'none';
     }
-
-    scoreDiv.innerHTML = '';
-    scoreDiv.appendChild(playerScore);
-    scoreDiv.appendChild(computerScore);
 }
 
 function game(){
@@ -88,5 +106,6 @@ function game(){
     resultBoard.appendChild(resultRoundDiv);
     resultBoard.appendChild(scoreDiv);
 }
+
 
 game();
