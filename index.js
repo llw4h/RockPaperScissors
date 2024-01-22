@@ -11,8 +11,9 @@ function getComputerChoice(){
     return choice[Math.floor(Math.random() * choice.length)] ;
 }
 
+let resultRound = document.createElement('p');
+
 function playRound(playerSelection, computerSelection){
-    let resultRound = document.createElement('p');
 
     if ((playerSelection === 'scissors' && computerSelection === 'rock') ||
     (playerSelection === 'rock' && computerSelection === 'paper') ||
@@ -66,23 +67,24 @@ function tallyPoints(){
     playerScore.textContent = `Player: ${player}`;
     computerScore.textContent = `Computer: ${computer}`;
 
+    if (player === 5 || computer === 5){
+        let winner = (player === 5) ? 'Player' : 'Computer';
+        resultRound.textContent = `${winner} Wins The Match!`;
+        resultRoundDiv.innerHTML = '';
+        resultRoundDiv.appendChild(resultRound);
+
+        rockBtn.style.display = 'none'; 
+        paperBtn.style.display = 'none';
+        scissorsBtn.style.display = 'none';
+    }
+
     scoreDiv.innerHTML = '';
     scoreDiv.appendChild(playerScore);
     scoreDiv.appendChild(computerScore);
 }
 
 function game(){
-    // }
-
-    // let resultMatch = document.createElement('p');
-    // if (player > computer) {
-    //     resultMatch.textContent = `You wins the match with a score of ${player}!`;
-    // } else{
-    //     resultMatch.textContent = `Computer wins the match with a score of ${computer}!`;
-    // }
-    
-    resultBoard.innerHTML = '';  // Clear previous content
-    // resultBoard.appendChild(resultMatch);
+    resultBoard.innerHTML = '';  
     resultBoard.appendChild(resultRoundDiv);
     resultBoard.appendChild(scoreDiv);
 }
