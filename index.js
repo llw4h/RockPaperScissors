@@ -11,7 +11,8 @@ let playerScore = document.createElement('p');
 let computerScore = document.createElement('p');
 
 const resetBtn = document.createElement('button');
-resetBtn.textContent = 'Try Again';
+const resetSpan = document.createElement('span');
+resetSpan.textContent = 'Try Again';
 
 let result = null;
 let player = 0;
@@ -93,6 +94,7 @@ function tallyPoints(){
         resultRound.textContent = `${winner} Wins The Match!`;
         resultRoundDiv.innerHTML = '';
         resultRoundDiv.appendChild(resultRound);
+        resetBtn.appendChild(resetSpan);
         resultBoard.appendChild(resetBtn);
 
         rockBtn.style.display = 'none'; 
@@ -106,6 +108,5 @@ function game(){
     resultBoard.appendChild(resultRoundDiv);
     resultBoard.appendChild(scoreDiv);
 }
-
 
 game();
