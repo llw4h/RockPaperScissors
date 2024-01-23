@@ -53,11 +53,14 @@ function playRound(playerSelection, computerSelection){
             console.log(playerSelection);
             console.log(computerSelection);
             console.log(selectedChoice[i].src)
-            playerImg.appendChild(selectedChoice[i].cloneNode(true));
+            playerImg.appendChild(selectedChoice[i]); // repeating for rock 
+            break;
         }
-
+    }
+    for (let i = 0; i < selectedChoice.length; i++){
         if (selectedChoice[i].src.includes(computerSelection)){
-            computerImg.appendChild(selectedChoice[i].cloneNode(true));
+            computerImg.appendChild(selectedChoice[i]);
+            break;
         }
     }
     selectionBoard.appendChild(playerImg);
