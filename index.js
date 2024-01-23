@@ -37,30 +37,28 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
+    if (playerSelection === computerSelection) {
+        computerSelection = getComputerChoice();
+        return playRound(playerSelection, computerSelection);
+    }
+    
     // checks which image is player/computer then displays it
     selectionBoard.innerHTML = '';
     let selectedChoice = [rockImg, paperImg, scissorsImg];
     // displays the player's choice first
+    playerImg.innerHTML = '';
+    computerImg.innerHTML = '';
     for (let i = 0; i < selectedChoice.length; i++){
         if (selectedChoice[i].src.includes(playerSelection)){
-            playerImg.innerHTML = '';
-            playerImg.appendChild(selectedChoice[i]);
+            playerImg.appendChild(selectedChoice[i].cloneNode(true));
         }
 
         if (selectedChoice[i].src.includes(computerSelection)){
-            computerImg.innerHTML = '';
-            computerImg.appendChild(selectedChoice[i]);
+            computerImg.appendChild(selectedChoice[i].cloneNode(true));
         }
     }
     selectionBoard.appendChild(playerImg);
     selectionBoard.appendChild(computerImg);
-    // displays the computer's choice second TODO:fix and put it in specific divs instead
-    // for (let i = 0; i < selectedChoice.length; i++){
-    //     if (selectedChoice[i].src.includes(computerSelection)){
-    //         selectionBoard.appendChild(selectedChoice[i]);
-    //         break;
-    //     }
-    // }
 
     if ((playerSelection === 'scissors' && computerSelection === 'rock') ||
     (playerSelection === 'rock' && computerSelection === 'paper') ||
@@ -70,11 +68,6 @@ function playRound(playerSelection, computerSelection){
         resultRoundDiv.appendChild(resultRound);
         return false;
     } 
-
-    if (playerSelection === computerSelection) {
-        computerSelection = getComputerChoice();
-        return playRound(playerSelection, computerSelection);
-    }
 
     resultRound.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
     resultRoundDiv.innerHTML = '';
