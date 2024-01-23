@@ -41,7 +41,7 @@ function playRound(playerSelection, computerSelection){
         computerSelection = getComputerChoice();
         return playRound(playerSelection, computerSelection);
     }
-    
+
     // checks which image is player/computer then displays it
     selectionBoard.innerHTML = '';
     let selectedChoice = [rockImg, paperImg, scissorsImg];
