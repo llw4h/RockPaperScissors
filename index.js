@@ -50,6 +50,9 @@ function playRound(playerSelection, computerSelection){
     computerImg.innerHTML = '';
     for (let i = 0; i < selectedChoice.length; i++){
         if (selectedChoice[i].src.includes(playerSelection)){
+            console.log(playerSelection);
+            console.log(computerSelection);
+            console.log(selectedChoice[i].src)
             playerImg.appendChild(selectedChoice[i].cloneNode(true));
         }
 
