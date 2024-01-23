@@ -77,7 +77,7 @@
     }
     
     .resultBoard .result {
-        border: 6px solid #313131;
+        border: 6px double #313131;
         padding: 12px;
         border-radius: 5px;
         font-size: 14px;
