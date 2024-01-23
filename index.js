@@ -3,6 +3,8 @@ const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
 let resultBoard = document.querySelector('.resultBoard');
 let selectionBoard = document.querySelector('.selectionBoard');
+let playerImg = document.querySelector('.playerImg');
+let computerImg = document.querySelector('.computerImg');
 
 let resultRoundDiv = document.createElement('div');
 let scoreDiv = document.createElement('div');
@@ -41,15 +43,24 @@ function playRound(playerSelection, computerSelection){
     // displays the player's choice first
     for (let i = 0; i < selectedChoice.length; i++){
         if (selectedChoice[i].src.includes(playerSelection)){
-            selectionBoard.appendChild(selectedChoice[i]);
+            playerImg.innerHTML = '';
+            playerImg.appendChild(selectedChoice[i]);
         }
-    }
-    // displays the computer's choice second TODO:fix and put it in specific divs instead
-    for (let i = 0; i < selectedChoice.length; i++){
+
         if (selectedChoice[i].src.includes(computerSelection)){
-            selectionBoard.appendChild(selectedChoice[i])
+            computerImg.innerHTML = '';
+            computerImg.appendChild(selectedChoice[i]);
         }
     }
+    selectionBoard.appendChild(playerImg);
+    selectionBoard.appendChild(computerImg);
+    // displays the computer's choice second TODO:fix and put it in specific divs instead
+    // for (let i = 0; i < selectedChoice.length; i++){
+    //     if (selectedChoice[i].src.includes(computerSelection)){
+    //         selectionBoard.appendChild(selectedChoice[i]);
+    //         break;
+    //     }
+    // }
 
     if ((playerSelection === 'scissors' && computerSelection === 'rock') ||
     (playerSelection === 'rock' && computerSelection === 'paper') ||
@@ -92,6 +103,8 @@ resetBtn.addEventListener('click', () => {
     computer = 0;
     resultRoundDiv.innerHTML = '';
     scoreDiv.innerHTML = '';
+    playerImg.innerHTML = '';
+    computerImg.innerHTML = '';
     selectionBoard.innerHTML = '';
     
     rockBtn.style.display = 'inline'; 
