@@ -2,6 +2,7 @@ const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
 let resultBoard = document.querySelector('.resultBoard');
+let selectionBoard = document.querySelector('.selectionBoard');
 
 let resultRoundDiv = document.createElement('div');
 let scoreDiv = document.createElement('div');
@@ -14,6 +15,16 @@ const resetBtn = document.createElement('button');
 const resetSpan = document.createElement('span');
 resetSpan.textContent = 'Try Again';
 
+let rockImg = document.createElement('img');
+let paperImg = document.createElement('img');
+let scissorsImg = document.createElement('img');
+rockImg.src = "img/rock.png";
+paperImg.src = "img/paper.png";
+scissorsImg.src = "img/scissors.png";
+rockImg.classList.add("rockImg");
+paperImg.classList.add("paperImg");
+scissorsImg.classList.add("scissorsImg");
+
 let result = null;
 let player = 0;
 let computer = 0;
@@ -24,6 +35,21 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
+    // checks which image is player/computer then displays it
+    selectionBoard.innerHTML = '';
+    let selectedChoice = [rockImg, paperImg, scissorsImg];
+    // displays the player's choice first
+    for (let i = 0; i < selectedChoice.length; i++){
+        if (selectedChoice[i].src.includes(playerSelection)){
+            selectionBoard.appendChild(selectedChoice[i]);
+        }
+    }
+    // displays the computer's choice second TODO:fix and put it in specific divs instead
+    for (let i = 0; i < selectedChoice.length; i++){
+        if (selectedChoice[i].src.includes(computerSelection)){
+            selectionBoard.appendChild(selectedChoice[i])
+        }
+    }
 
     if ((playerSelection === 'scissors' && computerSelection === 'rock') ||
     (playerSelection === 'rock' && computerSelection === 'paper') ||
@@ -66,6 +92,7 @@ resetBtn.addEventListener('click', () => {
     computer = 0;
     resultRoundDiv.innerHTML = '';
     scoreDiv.innerHTML = '';
+    selectionBoard.innerHTML = '';
     
     rockBtn.style.display = 'inline'; 
     paperBtn.style.display = 'inline';
