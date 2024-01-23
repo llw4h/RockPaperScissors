@@ -5,10 +5,14 @@ let resultBoard = document.querySelector('.resultBoard');
 let selectionBoard = document.querySelector('.selectionBoard');
 let playerImg = document.querySelector('.playerImg');
 let computerImg = document.querySelector('.computerImg');
+let playerScoreBoard = document.querySelector('.playerScoreBoard');
+let computerScoreBoard = document.querySelector('.computerScoreBoard');
 
 let resultRoundDiv = document.createElement('div');
 let scoreDiv = document.createElement('div');
+
 let resultRound = document.createElement('p');
+resultRound.classList.add('result');
 
 let playerScore = document.createElement('p');
 let computerScore = document.createElement('p');
@@ -21,8 +25,11 @@ let rockImg = document.createElement('img');
 let paperImg = document.createElement('img');
 let scissorsImg = document.createElement('img');
 rockImg.src = "img/rock.png";
+rockImg.alt = "rock";
 paperImg.src = "img/paper.png";
+paperImg.alt = "paper";
 scissorsImg.src = "img/scissors.png";
+scissorsImg.alt = "scissors";
 rockImg.classList.add("rockImg");
 paperImg.classList.add("paperImg");
 scissorsImg.classList.add("scissorsImg");
@@ -50,12 +57,7 @@ function playRound(playerSelection, computerSelection){
     computerImg.innerHTML = '';
     for (let i = 0; i < selectedChoice.length; i++){
         if (selectedChoice[i].src.includes(playerSelection)){
-            console.log(selectedChoice[i].src.includes(playerSelection));
-            console.log(playerSelection);
-            console.log(computerSelection);
-            console.log(selectedChoice[i].src);
-            playerImg.appendChild(selectedChoice[i]); // repeating for rock 
-            console.log(i);
+            playerImg.appendChild(selectedChoice[i]); // repeating for rock: FIXED
             break;
         }
     }
@@ -65,19 +67,21 @@ function playRound(playerSelection, computerSelection){
             break;
         }
     }
+    selectionBoard.appendChild(playerScoreBoard);
     selectionBoard.appendChild(playerImg);
     selectionBoard.appendChild(computerImg);
+    selectionBoard.appendChild(computerScoreBoard);
 
     if ((playerSelection === 'scissors' && computerSelection === 'rock') ||
     (playerSelection === 'rock' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'scissors')){
-        resultRound.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        resultRound.textContent = `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
         resultRoundDiv.innerHTML = '';  
         resultRoundDiv.appendChild(resultRound);
         return false;
     } 
 
-    resultRound.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+    resultRound.textContent = `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
     resultRoundDiv.innerHTML = '';
     resultRoundDiv.appendChild(resultRound);
     return true;
@@ -103,7 +107,9 @@ resetBtn.addEventListener('click', () => {
     player = 0;
     computer = 0;
     resultRoundDiv.innerHTML = '';
-    scoreDiv.innerHTML = '';
+    // scoreDiv.innerHTML = '';
+    playerScoreBoard.innerHTML = '';
+    computerScoreBoard.innerHTML = '';
     playerImg.innerHTML = '';
     computerImg.innerHTML = '';
     selectionBoard.innerHTML = '';
@@ -123,12 +129,16 @@ function tallyPoints(){
         computer++;
     }
 
-    playerScore.textContent = `Player: ${player}`;
-    computerScore.textContent = `Computer: ${computer}`;
+    playerScore.textContent = `PLAYER: ${player}`;
+    computerScore.textContent = `COMPUTER: ${computer}`;
 
-    scoreDiv.innerHTML = '';
-    scoreDiv.appendChild(playerScore);
-    scoreDiv.appendChild(computerScore);
+    // scoreDiv.innerHTML = '';
+    // scoreDiv.appendChild(playerScore);
+    // scoreDiv.appendChild(computerScore);
+    
+    playerScoreBoard.innerHTML = '';
+    playerScoreBoard.appendChild(playerScore);
+    computerScoreBoard.appendChild(computerScore);
 
     if (player === 5 || computer === 5){
         let winner = (player === 5) ? 'Player' : 'Computer';
@@ -145,9 +155,12 @@ function tallyPoints(){
 }
 
 function game(){
+    selectionBoard.append(rockImg);
+    selectionBoard.append(paperImg);
+    selectionBoard.append(scissorsImg);
     resultBoard.innerHTML = '';  
     resultBoard.appendChild(resultRoundDiv);
-    resultBoard.appendChild(scoreDiv);
+    // resultBoard.appendChild(scoreDiv);
 }
 
 game();

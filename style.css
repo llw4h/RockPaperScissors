@@ -1,16 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+@media screen and (max-width: 550px) {
+    h1{
+        letter-spacing: normal !important;
+
+    }
+    .choices {
+        margin: auto !important;
+    }
+
+    span, button {
+        font-size: 10px !important;
+        letter-spacing: normal !important;
+    }
+
+    button{
+        border: 1px solid #313131;
+    }
+}
+
 * {
     background-color: #76AE3F;
     font-family: 'Press Start 2P', system-ui;
     color: #313131;
 }
-.choices{
+/* .choices{
     padding-top: 50px;
-}
+} */
 body {
     display: grid;
     justify-items:center;
+    min-height: 100vh;
 }
 
 h1 {
@@ -30,7 +50,8 @@ p {
 }
 
 span, button {
-    font-size: 18px;
+    font-size: 24px;
+    letter-spacing: 5px;
 }
 
 button{
@@ -50,4 +71,40 @@ button:hover{
     border: 12px solid #313131;
     background-color: #2C2C30;
     border-radius: 5px;
+    margin: 5em;
+}
+
+.rockImg, .paperImg, .scissorsImg{
+    height: 200px;
+    width: 200px;
+}
+
+.selectionBoard{
+    display:flex;
+    justify-content: space-between;
+}
+
+.result{
+    border: 10px solid #313131;
+    padding: 18px;
+    border-radius: 5px;
+}
+
+footer{
+    text-align: center;
+    padding: 5px;
+}
+
+footer p{
+    font-size: 10px;
+}
+
+.playerScoreBoard, .computerScoreBoard{
+    margin-top: 150px;
+}
+
+.space{
+    height: 70px;
+    /* height: 500px;
+    width:10px; */
 }
