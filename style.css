@@ -102,7 +102,7 @@
 }
 
 * {
-    background-color: #76AE3F;
+    background-color: #bcc79b;
     font-family: 'Press Start 2P', system-ui;
     color: #313131;
 }
@@ -137,7 +137,7 @@ span, button {
 }
 
 button{
-    border: 3px solid #313131;
+    border: 5px solid #313131;
     border-radius: 5px;
     cursor:pointer;
 }
@@ -167,7 +167,7 @@ button:hover{
 }
 
 .result{
-    border: 10px solid #313131;
+    border: 10px double #313131;
     padding: 18px;
     border-radius: 5px;
 }

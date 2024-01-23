@@ -19,7 +19,7 @@ let computerScore = document.createElement('p');
 
 const resetBtn = document.createElement('button');
 const resetSpan = document.createElement('span');
-resetSpan.textContent = 'Try Again';
+resetSpan.textContent = 'TRY AGAIN';
 
 let rockImg = document.createElement('img');
 let paperImg = document.createElement('img');
