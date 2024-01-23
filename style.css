@@ -43,11 +43,15 @@
     }
     
     button span {
-        font-size: 16px;
+        font-size: 12px;
         letter-spacing: 3px;
     }
     
     .choices button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 7px;
         margin-top: 40px;
         border: 5px solid #313131;
         border-radius: 5px;
